@@ -1,4 +1,3 @@
-using System;
 using System.Web.Mvc;
 using AlloyTech.Web.Models.Media;
 using AlloyTech.Web.Models.ViewModels;
@@ -16,7 +15,6 @@ namespace AlloyTech.Web.Controllers
 
         public ImageFileController(UrlResolver urlResolver)
         {
-            Console.WriteLine("abc");
             _urlResolver = urlResolver;
         }
 

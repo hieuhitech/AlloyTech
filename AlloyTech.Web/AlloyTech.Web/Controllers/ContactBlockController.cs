@@ -1,4 +1,3 @@
-using System;
 using System.Web;
 using System.Web.Mvc;
 using EPiServer.Core;
@@ -19,7 +18,6 @@ namespace AlloyTech.Web.Controllers
 
         public ContactBlockController(IContentLoader contentLoader, IPermanentLinkMapper permanentLinkMapper)
         {
-            Console.WriteLine("hello world");
             _contentLoader = contentLoader;
             _permanentLinkMapper = permanentLinkMapper;
         }

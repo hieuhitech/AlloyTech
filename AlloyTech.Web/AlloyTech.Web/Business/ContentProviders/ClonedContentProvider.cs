@@ -57,7 +57,7 @@ namespace AlloyTech.Web.Business.ContentProviders
             // Set the entry point parameter
             Parameters.Add(ContentProviderElement.EntryPointString, EntryRoot.ID.ToString(CultureInfo.InvariantCulture));
         }
-        
+
         /// <summary>
         /// Clones a page to make it appear to come from where the content provider is attached
         /// </summary>
@@ -81,7 +81,7 @@ namespace AlloyTech.Web.Business.ContentProviders
             // All pages but the entry root should appear to come from this content provider
             if (!clone.PageLink.CompareToIgnoreWorkID(EntryRoot))
             {
-                clone.ContentLink.ProviderName = ProviderKey;    
+                clone.ContentLink.ProviderName = ProviderKey;
             }
 
             // Unless the parent is the entry root, it should appear to come from this content provider
@@ -93,7 +93,7 @@ namespace AlloyTech.Web.Business.ContentProviders
 
                 clone.ParentLink = parentLinkClone;
             }
-            
+
             // This is integral to map the cloned page to this content provider
             clone.LinkURL = ConstructContentUri(originalPage.PageTypeID, clone.ContentLink, clone.ContentGuid).ToString();
 
@@ -121,7 +121,8 @@ namespace AlloyTech.Web.Business.ContentProviders
                 if (contentReference is ContentReference)
                 {
                     content = (contentReference as ContentReference).Get<IContent>() as ICategorizable;
-                } else if (typeof(T) == typeof(GetChildrenReferenceResult))
+                }
+                else if (typeof(T) == typeof(GetChildrenReferenceResult))
                 {
                     content = (contentReference as GetChildrenReferenceResult).ContentLink.Get<IContent>() as ICategorizable;
                 }
@@ -167,11 +168,11 @@ namespace AlloyTech.Web.Business.ContentProviders
 
             if (contentLink.GetPublishedOrLatest)
             {
-                return ContentStore.LoadVersion(contentLink, langBr != null ? langBr.ID : -1);
+                return ContentStore.LoadVersion(contentLink, langBr?.ID ?? -1);
             }
 
             // Get published version of Content
-            var originalContent = ContentStore.Load(contentLink, langBr != null ? langBr.ID : -1);
+            var originalContent = ContentStore.Load(contentLink, langBr?.ID ?? -1);
 
             var page = originalContent as PageData;
 
@@ -185,7 +186,7 @@ namespace AlloyTech.Web.Business.ContentProviders
 
         protected override ContentResolveResult ResolveContent(ContentReference contentLink)
         {
-            var contentData = ContentCoreDataLoader.Service.Load(contentLink.ID);
+            var contentData = ServiceLocator.Current.GetInstance<IContentCoreDataLoader>().Load(contentLink.ID);
 
             // All pages but the entry root should appear to come from this content provider
             if (!contentLink.CompareToIgnoreWorkID(EntryRoot))

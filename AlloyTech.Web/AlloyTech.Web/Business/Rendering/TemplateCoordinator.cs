@@ -89,12 +89,12 @@ namespace AlloyTech.Web.Business.Rendering
 
         private static string BlockPath(string fileName)
         {
-            return string.Format("{0}{1}", BlockFolder, fileName);
+            return $"{BlockFolder}{fileName}";
         }
 
         private static string PagePartialPath(string fileName)
         {
-            return string.Format("{0}{1}", PagePartialsFolder, fileName);
+            return $"{PagePartialsFolder}{fileName}";
         }
     }
 }

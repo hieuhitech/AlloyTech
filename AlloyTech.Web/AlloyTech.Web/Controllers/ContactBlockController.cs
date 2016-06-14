@@ -47,7 +47,7 @@ namespace AlloyTech.Web.Controllers
             ViewData.GetEditHints<ContactBlockModel, ContactBlock>()
                 .AddConnection(x => x.Heading, x => x.Heading)
                 .AddConnection(x => x.Image, x => x.Image)
-                .AddConnection(x => (object) x.ContactPage, x => (object) x.ContactPageLink)
+                .AddConnection(x => x.ContactPage, x => (object) x.ContactPageLink)
                 .AddConnection(x => x.LinkText, x => x.LinkText);
 
             return PartialView(model);
@@ -55,22 +55,18 @@ namespace AlloyTech.Web.Controllers
 
         private IHtmlString GetLinkUrl(ContactBlock contactBlock)
         {
-            if (contactBlock.LinkUrl != null && !contactBlock.LinkUrl.IsEmpty())
+            if (contactBlock.LinkUrl == null || contactBlock.LinkUrl.IsEmpty()) return null;
+            var linkUrl = contactBlock.LinkUrl.ToString();
+
+            //If the url maps to a page on the site we convert it from the internal (permanent, GUID-like) format
+            //to the human readable and pretty public format
+            var linkMap = _permanentLinkMapper.Find(new UrlBuilder(linkUrl)) as PermanentContentLinkMap;
+            if (linkMap != null && !ContentReference.IsNullOrEmpty(linkMap.ContentReference) && linkMap.ContentReference is PageReference)
             {
-                var linkUrl = contactBlock.LinkUrl.ToString();
-
-                //If the url maps to a page on the site we convert it from the internal (permanent, GUID-like) format
-                //to the human readable and pretty public format
-                var linkMap = _permanentLinkMapper.Find(new UrlBuilder(linkUrl)) as PermanentContentLinkMap;
-                if (linkMap != null && !ContentReference.IsNullOrEmpty(linkMap.ContentReference) && linkMap.ContentReference is PageReference)
-                {
-                    return Url.PageLinkUrl((PageReference)linkMap.ContentReference);
-                }
-
-                return new MvcHtmlString(contactBlock.LinkUrl.ToString());
+                return Url.PageLinkUrl((PageReference)linkMap.ContentReference);
             }
 
-            return null;
+            return new MvcHtmlString(contactBlock.LinkUrl.ToString());
         }
 
     }

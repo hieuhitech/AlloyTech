@@ -229,7 +229,7 @@ namespace AlloyTech.Web.Business.ContentProviders
                 contentReference.ContentLink.ProviderName = ProviderKey;
             }
 
-            return FilterByCategory <GetChildrenReferenceResult>(children);
+            return FilterByCategory(children);
         }
 
         protected override IEnumerable<IContent> LoadContents(IList<ContentReference> contentReferences, ILanguageSelector selector)
@@ -243,18 +243,18 @@ namespace AlloyTech.Web.Business.ContentProviders
         protected override void SetCacheSettings(IContent content, CacheSettings cacheSettings)
         {
             // Make the cache of this content provider depend on the original content
-            cacheSettings.CacheKeys.Add(DataFactoryCache.PageCommonCacheKey(new ContentReference(content.ContentLink.ID)));
+            cacheSettings.CacheKeys.Add(ServiceLocator.Current.GetInstance<IContentCacheKeyCreator>().CreateCommonCacheKey(new ContentReference(content.ContentLink.ID)));
         }
 
         protected override void SetCacheSettings(ContentReference contentReference, IEnumerable<GetChildrenReferenceResult> children, CacheSettings cacheSettings)
         {
             // Make the cache of this content provider depend on the original content
 
-            cacheSettings.CacheKeys.Add(DataFactoryCache.PageCommonCacheKey(new ContentReference(contentReference.ID)));
+            cacheSettings.CacheKeys.Add(ServiceLocator.Current.GetInstance<IContentCacheKeyCreator>().CreateCommonCacheKey(new ContentReference(contentReference.ID)));
 
             foreach (var child in children)
             {
-                cacheSettings.CacheKeys.Add(DataFactoryCache.PageCommonCacheKey(new ContentReference(child.ContentLink.ID)));
+                cacheSettings.CacheKeys.Add(ServiceLocator.Current.GetInstance<IContentCacheKeyCreator>().CreateCommonCacheKey(new ContentReference(child.ContentLink.ID)));
             }
         }
 
@@ -270,7 +270,7 @@ namespace AlloyTech.Web.Business.ContentProviders
                 contentReference.ProviderName = ProviderKey;
             }
 
-            return FilterByCategory<ContentReference>(descendents);
+            return FilterByCategory(descendents);
         }
 
         public PageDataCollection FindAllPagesWithCriteria(PageReference pageLink, PropertyCriteriaCollection criterias, string languageBranch, ILanguageSelector selector)
@@ -312,26 +312,17 @@ namespace AlloyTech.Web.Business.ContentProviders
         /// <summary>
         /// Gets the content store used to get original content
         /// </summary>
-        protected virtual ContentStore ContentStore
-        {
-            get { return ServiceLocator.Current.GetInstance<ContentStore>(); }
-        }
+        protected virtual ContentStore ContentStore => ServiceLocator.Current.GetInstance<ContentStore>();
 
         /// <summary>
         /// Gets the content loader used to get content
         /// </summary>
-        protected virtual IContentLoader ContentLoader
-        {
-            get { return ServiceLocator.Current.GetInstance<IContentLoader>(); }
-        }
+        protected virtual IContentLoader ContentLoader => ServiceLocator.Current.GetInstance<IContentLoader>();
 
         /// <summary>
         /// Gets the service used to query for pages using criterias
         /// </summary>
-        protected virtual IPageCriteriaQueryService PageQueryService 
-        { 
-            get { return ServiceLocator.Current.GetInstance<IPageCriteriaQueryService>(); }
-        }
+        protected virtual IPageCriteriaQueryService PageQueryService => ServiceLocator.Current.GetInstance<IPageCriteriaQueryService>();
 
         /// <summary>
         /// Content that should be cloned at the entry point
@@ -352,22 +343,16 @@ namespace AlloyTech.Web.Business.ContentProviders
         /// <summary>
         /// Gets a unique key for this content provider instance
         /// </summary>
-        public override string ProviderKey
-        {
-            get
-            {
-                return string.Format("ClonedContent-{0}-{1}", CloneRoot.ID, EntryRoot.ID);
-            }
-        }
+        public override string ProviderKey => $"ClonedContent-{CloneRoot.ID}-{EntryRoot.ID}";
 
         /// <summary>
         /// Gets capabilities indicating no content editing can be performed through this provider
         /// </summary>
-        public override ContentProviderCapabilities ProviderCapabilities { get { return ContentProviderCapabilities.Search; } }
+        public override ContentProviderCapabilities ProviderCapabilities => ContentProviderCapabilities.Search;
 
         /// <summary>
         /// Gets configuration parameters for this content provider instance
         /// </summary>
-        public override NameValueCollection Parameters { get { return _parameters; } }
+        public override NameValueCollection Parameters => _parameters;
     }
 }

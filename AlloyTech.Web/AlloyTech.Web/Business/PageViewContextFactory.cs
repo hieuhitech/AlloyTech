@@ -2,7 +2,6 @@ using System.Linq;
 using System.Web.Mvc;
 using System.Web.Routing;
 using System.Web.Security;
-using AlloyTech.Web.Helpers;
 using AlloyTech.Web.Models.Pages;
 using AlloyTech.Web.Models.ViewModels;
 using EPiServer;
@@ -51,10 +50,7 @@ namespace AlloyTech.Web.Business
 
         private string GetLoginUrl(ContentReference returnToContentLink)
         {
-            return string.Format(
-                "{0}?ReturnUrl={1}",
-                FormsAuthentication.LoginUrl,
-                _urlResolver.GetUrl(returnToContentLink));
+            return $"{FormsAuthentication.LoginUrl}?ReturnUrl={_urlResolver.GetUrl(returnToContentLink)}";
         }
 
         public virtual IContent GetSection(ContentReference contentLink)

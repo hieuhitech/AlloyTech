@@ -88,9 +88,6 @@ namespace AlloyTech.Web.Models.Pages
         [CultureSpecific]
         public virtual bool HideSiteFooter { get; set; }
 
-        public string ContentAreaCssClass
-        {
-            get { return "teaserblock"; } //Page partials should be style like teasers
-        }
+        public string ContentAreaCssClass => "teaserblock";
     }
 }

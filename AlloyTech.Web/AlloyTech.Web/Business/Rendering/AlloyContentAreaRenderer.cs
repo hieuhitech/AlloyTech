@@ -2,8 +2,6 @@ using System;
 using System.Web.Mvc;
 using EPiServer.Core;
 using EPiServer.Core.Html.StringParsing;
-using EPiServer.Web;
-using EPiServer.Web.Mvc;
 using EPiServer.Web.Mvc.Html;
 using EPiServer;
 
@@ -17,7 +15,8 @@ namespace AlloyTech.Web.Business.Rendering
         protected override string GetContentAreaItemCssClass(HtmlHelper htmlHelper, ContentAreaItem contentAreaItem)
         {
             var tag = GetContentAreaItemTemplateTag(htmlHelper, contentAreaItem);
-            return string.Format("block {0} {1} {2}", GetTypeSpecificCssClasses(contentAreaItem, ContentRepository), GetCssClassForTag(tag), tag);
+            return
+                $"block {GetTypeSpecificCssClasses(contentAreaItem, ContentRepository)} {GetCssClassForTag(tag)} {tag}";
         }
 
         /// <summary>
@@ -45,13 +44,13 @@ namespace AlloyTech.Web.Business.Rendering
 
         private static string GetTypeSpecificCssClasses(ContentAreaItem contentAreaItem, IContentRepository contentRepository)
         {
-            var content = contentAreaItem.GetContent(contentRepository);
+            var content = contentAreaItem.GetContent();
             var cssClass = content == null ? String.Empty : content.GetOriginalType().Name.ToLowerInvariant();
 
             var customClassContent = content as ICustomCssInContentArea;
             if (customClassContent != null && !string.IsNullOrWhiteSpace(customClassContent.ContentAreaCssClass))
             {
-                cssClass += string.Format("{0}", customClassContent.ContentAreaCssClass);
+                cssClass += $"{customClassContent.ContentAreaCssClass}";
             }
 
             return cssClass;

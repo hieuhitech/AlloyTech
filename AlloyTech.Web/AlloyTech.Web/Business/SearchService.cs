@@ -20,10 +20,7 @@ namespace AlloyTech.Web.Business
             _contentLoader = contentLoader;
         }
 
-        public virtual bool IsActive
-        {
-            get { return SearchSettings.Config.Active; }
-        }
+        public virtual bool IsActive => SearchSettings.Config.Active;
 
         public virtual SearchResults Search(string searchText, IEnumerable<ContentReference> searchRoots, HttpContextBase context, string languageBranch, int maxResults)
         {
@@ -59,7 +56,7 @@ namespace AlloyTech.Web.Business
             foreach (var root in searchRoots)
             {
                 var contentRootQuery = new VirtualPathQuery();
-                contentRootQuery.AddContentNodes(root, _contentLoader);
+                contentRootQuery.AddContentNodes(root);
                 typeQueries.QueryExpressions.Add(contentRootQuery);
             }
 

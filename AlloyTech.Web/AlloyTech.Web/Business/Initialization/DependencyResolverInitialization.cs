@@ -3,7 +3,6 @@ using EPiServer.Framework;
 using EPiServer.Framework.Initialization;
 using EPiServer.ServiceLocation;
 using AlloyTech.Web.Business.Rendering;
-using AlloyTech.Web.Helpers;
 using EPiServer.Web.Mvc;
 using EPiServer.Web.Mvc.Html;
 using StructureMap;

@@ -1,6 +1,4 @@
 using System.ComponentModel.DataAnnotations;
-using AlloyTech.Web.Business;
-using AlloyTech.Web.Business.EditorDescriptors;
 using AlloyTech.Web.Business.Rendering;
 using EPiServer.Web;
 using EPiServer.Core;

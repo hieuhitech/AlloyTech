@@ -1,7 +1,6 @@
 using EPiServer.Core;
 using EPiServer.DataAnnotations;
 using EPiServer.Framework.DataAnnotations;
-using System.ComponentModel.DataAnnotations;
 
 namespace AlloyTech.Web.Models.Media
 {

@@ -9,8 +9,6 @@ using AlloyTech.Web.Business;
 using AlloyTech.Web.Models.Pages;
 using AlloyTech.Web.Models.ViewModels;
 using EPiServer.Web;
-using EPiServer.Web.Hosting;
-using EPiServer.Web.Mvc.Html;
 using EPiServer.Web.Routing;
 
 namespace AlloyTech.Web.Controllers

@@ -21,7 +21,6 @@ namespace AlloyTech.Web.Controllers
     {
         public ViewResult Index(SitePageData currentPage)
         {
-            Console.WriteLine("2");
             var model = CreateModel(currentPage);
             return View(string.Format("~/Views/{0}/Index.cshtml", currentPage.GetOriginalType().Name), model);
         }

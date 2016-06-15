@@ -243,3 +243,4 @@ ModelManifest.xml
 
 # FAKE - F# Make
 .fake/
+AlloyTech.Web/AlloyTech.Web/License.config

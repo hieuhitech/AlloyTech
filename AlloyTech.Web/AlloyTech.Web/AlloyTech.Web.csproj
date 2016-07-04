@@ -72,8 +72,8 @@
       <HintPath>..\packages\EPiServer.Framework.9.10.2\lib\net45\EPiServer.ApplicationModules.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="EPiServer.Cms.Shell.UI, Version=9.7.0.0, Culture=neutral, PublicKeyToken=8fe83dea738b45b7, processorArchitecture=MSIL">
-      <HintPath>..\packages\EPiServer.CMS.UI.Core.9.7.0\lib\net45\EPiServer.Cms.Shell.UI.dll</HintPath>
+    <Reference Include="EPiServer.Cms.Shell.UI, Version=9.7.1.0, Culture=neutral, PublicKeyToken=8fe83dea738b45b7, processorArchitecture=MSIL">
+      <HintPath>..\packages\EPiServer.CMS.UI.Core.9.7.1\lib\net45\EPiServer.Cms.Shell.UI.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="EPiServer.Configuration, Version=9.10.2.0, Culture=neutral, PublicKeyToken=8fe83dea738b45b7, processorArchitecture=MSIL">
@@ -132,12 +132,12 @@
       <HintPath>..\packages\EPiServer.Framework.9.10.2\lib\net45\EPiServer.Shell.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="EPiServer.Shell.UI, Version=9.7.0.0, Culture=neutral, PublicKeyToken=8fe83dea738b45b7, processorArchitecture=MSIL">
-      <HintPath>..\packages\EPiServer.CMS.UI.Core.9.7.0\lib\net45\EPiServer.Shell.UI.dll</HintPath>
+    <Reference Include="EPiServer.Shell.UI, Version=9.7.1.0, Culture=neutral, PublicKeyToken=8fe83dea738b45b7, processorArchitecture=MSIL">
+      <HintPath>..\packages\EPiServer.CMS.UI.Core.9.7.1\lib\net45\EPiServer.Shell.UI.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="EPiServer.UI, Version=9.7.0.0, Culture=neutral, PublicKeyToken=8fe83dea738b45b7, processorArchitecture=MSIL">
-      <HintPath>..\packages\EPiServer.CMS.UI.Core.9.7.0\lib\net45\EPiServer.UI.dll</HintPath>
+    <Reference Include="EPiServer.UI, Version=9.7.1.0, Culture=neutral, PublicKeyToken=8fe83dea738b45b7, processorArchitecture=MSIL">
+      <HintPath>..\packages\EPiServer.CMS.UI.Core.9.7.1\lib\net45\EPiServer.UI.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="EPiServer.Web.WebControls, Version=9.10.2.0, Culture=neutral, PublicKeyToken=8fe83dea738b45b7, processorArchitecture=MSIL">
@@ -152,8 +152,8 @@
       <HintPath>..\packages\ImageResizer.4.0.5\lib\net45\ImageResizer.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="ImageResizer.Plugins.EPiServerBlobReader, Version=4.0.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\ImageResizer.Plugins.EPiServerBlobReader.4.0.2\lib\net45\ImageResizer.Plugins.EPiServerBlobReader.dll</HintPath>
+    <Reference Include="ImageResizer.Plugins.EPiServerBlobReader, Version=4.0.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ImageResizer.Plugins.EPiServerBlobReader.4.0.3\lib\net45\ImageResizer.Plugins.EPiServerBlobReader.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="log4net, Version=1.2.15.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
@@ -375,6 +375,10 @@
     <Content Include="Resources\LanguageFiles\PropertyNames.xml" />
     <Content Include="Resources\LanguageFiles\Views.xml" />
     <Content Include="Resources\LanguageFiles\_ReadMe.txt" />
+    <Content Include="modules\_protected\Shell\web.config" />
+    <Content Include="modules\_protected\Shell\Shell.zip" />
+    <Content Include="modules\_protected\CMS\web.config" />
+    <Content Include="modules\_protected\CMS\CMS.zip" />
     <None Include="Scripts\jquery-3.0.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.0.0.js" />
     <Content Include="Scripts\jquery-3.0.0.min.js" />
@@ -467,10 +471,6 @@
     <Content Include="Views\ArticlePage\Index.cshtml" />
     <Content Include="module.config" />
     <Content Include="Views\SearchPage\Index.cshtml" />
-    <Content Include="modules\_protected\Shell\web.config" />
-    <Content Include="modules\_protected\Shell\Shell.zip" />
-    <Content Include="modules\_protected\CMS\web.config" />
-    <Content Include="modules\_protected\CMS\CMS.zip" />
     <Content Include="modules\_protected\EPiServer.Packaging.UI\web.config" />
     <Content Include="modules\_protected\EPiServer.Packaging.UI\EPiServer.Packaging.UI.zip" />
     <Content Include="Scripts\jquery-3.0.0.slim.min.map" />
